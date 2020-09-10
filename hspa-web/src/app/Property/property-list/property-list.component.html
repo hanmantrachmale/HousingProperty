@@ -1,0 +1,8 @@
+<div class="row">
+  <div *ngFor="let propertyItem of properties" class="shadow-lg col-sm-4">
+    <app-property-card
+      [property]="propertyItem"
+      [hideIcons]="false"
+    ></app-property-card>
+  </div>
+</div>
