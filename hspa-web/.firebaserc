@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hspa-housing"
+  },
+  "targets": {
+    "hspa-housing": {
+      "hosting": {
+        "hspa-web": [
+          "hspa-housing"
+        ]
+      }
+    }
+  }
+}
