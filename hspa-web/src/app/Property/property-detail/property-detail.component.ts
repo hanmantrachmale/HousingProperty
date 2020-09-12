@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HousingService } from './../../service/housing.service';
+import { Property } from 'src/app/model/property';
+import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'app-property-detail',
@@ -8,18 +13,71 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PropertyDetailComponent implements OnInit {
   propertyId: number;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  property: Property;
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private housingService: HousingService
+  ) {}
 
   ngOnInit(): void {
     this.propertyId = +this.route.snapshot.params['id'];
 
-    this.route.params.subscribe((param) => {
-      this.propertyId = +param['id'];
+    this.route.data.subscribe((data: Property) => {
+      this.property = data['prp'];
     });
-  }
 
-  onSelect() {
-    this.propertyId += 1;
-    this.router.navigate(['property-detail', this.propertyId]);
+    // this.route.params.subscribe((param) => {
+    //   this.propertyId = +param['id'];
+    //   this.housingService
+    //     .getProperty(this.propertyId)
+    //     .subscribe((data: Property) => {
+    //       this.property = data;
+    //     });
+    // });
+
+    this.galleryOptions = [
+      {
+        width: '100%',
+        height: '465px',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        preview: true,
+        previewZoom: true,
+        previewZoomMax: 5,
+        previewZoomMin: 0.5,
+        previewRotate: true,
+      },
+    ];
+
+    this.galleryImages = [
+      {
+        small: 'assets/images/prop-1.png',
+        medium: 'assets/images/prop-1.png',
+        big: 'assets/images/prop-1.png',
+      },
+      {
+        small: 'assets/images/prop-2.png',
+        medium: 'assets/images/prop-2.png',
+        big: 'assets/images/prop-2.png',
+      },
+      {
+        small: 'assets/images/prop-3.png',
+        medium: 'assets/images/prop-3.png',
+        big: 'assets/images/prop-3.png',
+      },
+      {
+        small: 'assets/images/prop-4.png',
+        medium: 'assets/images/prop-4.png',
+        big: 'assets/images/prop-4.png',
+      },
+      {
+        small: 'assets/images/prop-5.png',
+        medium: 'assets/images/prop-5.png',
+        big: 'assets/images/prop-5.png',
+      },
+    ];
   }
 }

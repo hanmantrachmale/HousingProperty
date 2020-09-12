@@ -1,9 +1,8 @@
+import { Property } from 'src/app/model/property';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { IProperty } from '../model/iproperty';
-import { Property } from '../model/property';
 
 @Injectable({
   providedIn: 'root',
@@ -11,23 +10,39 @@ import { Property } from '../model/property';
 export class HousingService {
   constructor(private http: HttpClient) {}
 
-  getAllProperties(sellRent: number): Observable<IProperty[]> {
+  getProperty(id: number) {
+    return this.getAllProperties().pipe(
+      map((propertiesArray) => {
+        return propertiesArray.find((p) => p.Id === id);
+      })
+    );
+  }
+
+  getAllProperties(sellRent?: number): Observable<Property[]> {
     return this.http.get('data/properties.json').pipe(
       map((data) => {
-        const propertiesArray: Array<IProperty> = [];
+        const propertiesArray: Array<Property> = [];
         const localProperties = JSON.parse(localStorage.getItem('newProp'));
         if (localProperties) {
           for (const id in localProperties) {
-            if (
-              localProperties.hasOwnProperty(id) &&
-              localProperties[id].SellRent === sellRent
-            ) {
+            if (sellRent) {
+              if (
+                localProperties.hasOwnProperty(id) &&
+                localProperties[id].SellRent === sellRent
+              ) {
+                propertiesArray.push(localProperties[id]);
+              }
+            } else {
               propertiesArray.push(localProperties[id]);
             }
           }
         }
         for (const id in data) {
-          if (data.hasOwnProperty(id) && data[id].SellRent === sellRent) {
+          if (sellRent) {
+            if (data.hasOwnProperty(id) && data[id].SellRent === sellRent) {
+              propertiesArray.push(data[id]);
+            }
+          } else {
             propertiesArray.push(data[id]);
           }
         }

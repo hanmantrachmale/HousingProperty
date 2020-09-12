@@ -11,6 +11,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './Property/property-card/property-card.component';
@@ -22,11 +23,20 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AuthService } from './service/auth.service';
+import { PropertyDetailResolverService } from './Property/property-detail/property-detail-resolver.service';
+import { FilterPipe } from './pipe/filter.pipe';
+import { SortPipe } from './pipe/sort.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
   { path: 'rent-property', component: PropertyListComponent },
-  { path: 'property-detail/:id', component: PropertyDetailComponent },
+  {
+    path: 'property-detail/:id',
+    component: PropertyDetailComponent,
+    resolve: {
+      prp: PropertyDetailResolverService,
+    },
+  },
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'user-login', component: UserLoginComponent },
   { path: 'user-register', component: UserRegisterComponent },
@@ -43,6 +53,8 @@ const appRoutes: Routes = [
     AddPropertyComponent,
     UserRegisterComponent,
     UserLoginComponent,
+    FilterPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
@@ -55,8 +67,15 @@ const appRoutes: Routes = [
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    NgxGalleryModule,
   ],
-  providers: [HousingService, UserService, AlertifyService, AuthService],
+  providers: [
+    HousingService,
+    UserService,
+    AlertifyService,
+    AuthService,
+    PropertyDetailResolverService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

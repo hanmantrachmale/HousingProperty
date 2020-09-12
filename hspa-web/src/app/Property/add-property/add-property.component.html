@@ -1,5 +1,5 @@
 <div class="row mb-5">
-  <div class="col-8 shadow-lg p-0 bg-white">
+  <div class="col-md-8 col-sm-12 shadow-lg p-0 bg-white">
     <div class="card">
       <div class="card-header">
         <h3>List your Property</h3>
@@ -17,7 +17,7 @@
                     formControlName="SellRent"
                   >
                     <label
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       btnRadio="1"
                       tabindex="0"
                       role="button"
@@ -25,7 +25,7 @@
                       >Sell</label
                     >
                     <label
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary border-style"
                       btnRadio="2"
                       tabindex="0"
                       role="button"
@@ -52,7 +52,7 @@
                   >
                     <label
                       *ngFor="let bhk of [1, 2, 3, 4]"
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       [btnRadio]="bhk"
                       tabindex="0"
                       role="button"
@@ -76,7 +76,7 @@
                   >
                     <label
                       *ngFor="let ptype of propertyTypes"
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       [btnRadio]="ptype"
                       tabindex="0"
                       role="button"
@@ -99,7 +99,7 @@
                   >
                     <label
                       *ngFor="let ftype of furnishTypes"
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       [btnRadio]="ftype"
                       tabindex="0"
                       role="button"
@@ -310,7 +310,7 @@
                   <p>Ready to Move</p>
                   <div class="btn-group" btnRadioGroup formControlName="RTM">
                     <label
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       btnRadio="1"
                       tabindex="0"
                       role="button"
@@ -318,7 +318,7 @@
                       >Yes
                     </label>
                     <label
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary border-style"
                       btnRadio="2"
                       tabindex="0"
                       role="button"
@@ -358,7 +358,7 @@
                   <p>Gated Community</p>
                   <div class="btn-group" btnRadioGroup formControlName="Gated">
                     <label
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       btnRadio="1"
                       tabindex="0"
                       role="button"
@@ -366,7 +366,7 @@
                       >Yes</label
                     >
                     <label
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary border-style"
                       btnRadio="2"
                       tabindex="0"
                       role="button"
@@ -382,37 +382,38 @@
                     class="btn-group"
                     btnRadioGroup
                     formControlName="MainEntrance"
+                    name="MainEntrance"
                   >
                     <label
-                      class="btn btn-outline-primary mr-2"
+                      class="btn btn-outline-primary mr-2 border-style"
                       btnRadio="1"
                       tabindex="0"
                       role="button"
-                      name="Entrance"
+                      name="MainEntrance"
                       >East</label
                     >
                     <label
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary mr-2 border-style"
                       btnRadio="2"
                       tabindex="0"
                       role="button"
-                      name="Entrance"
+                      name="MainEntrance"
                       >West</label
                     >
                     <label
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary mr-2 border-style"
                       btnRadio="3"
                       tabindex="0"
                       role="button"
-                      name="Entrance"
+                      name="MainEntrance"
                       >South</label
                     >
                     <label
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary border-style"
                       btnRadio="4"
                       tabindex="0"
                       role="button"
-                      name="Entrance"
+                      name="MainEntrance"
                       >North</label
                     >
                   </div>
@@ -476,7 +477,7 @@
       </div>
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-md-4 col-sm-12">
     <div class="card-header">
       <h3>Your Property Preview</h3>
     </div>

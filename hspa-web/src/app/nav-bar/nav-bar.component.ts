@@ -1,3 +1,4 @@
+import { IUser } from './../model/iuser';
 import { AlertifyService } from './../service/alertify.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  loggedinUser: string;
+  loggedinUserName: string;
+  showNavbar = false;
+  loginbar = 'nav-login-desktop';
   constructor(
     private router: Router,
     private alertifyService: AlertifyService
@@ -17,13 +20,21 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {}
 
   loggedIn() {
-    this.loggedinUser = localStorage.getItem('token');
-    return this.loggedinUser;
+    this.loggedinUserName = localStorage.getItem('token');
+    return this.loggedinUserName;
   }
 
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/user-login']);
     this.alertifyService.success('You are logged out!');
+  }
+  onToggleNavbar() {
+    this.showNavbar = !this.showNavbar;
+    if (this.showNavbar) {
+      this.loginbar = 'nav-login-mobile';
+    } else {
+      this.loginbar = 'nav-login-desktop';
+    }
   }
 }
